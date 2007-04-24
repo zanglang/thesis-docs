@@ -1,0 +1,498 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme pslatex
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3.5cm
+\rightmargin 3cm
+\bottommargin 3.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Description
+Name: Zhe Wei Chong
+\end_layout
+
+\begin_layout Description
+Student\InsetSpace \space{}
+Number: 40899013
+\end_layout
+
+\begin_layout Description
+Supervisor: Marius Portmann
+\end_layout
+
+\begin_layout Description
+Project\InsetSpace \space{}
+Title: Analyzing and Extending a Wireless Mesh Network Monitoring
+ System
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Research Question
+\end_layout
+
+\begin_layout Standard
+The main question for this research topic is how to best monitor a wireless
+ mesh network for system and traffic-related statistics, and then present
+ the data in a coherent way so that the overall health of the mesh may be
+ determined.
+\end_layout
+
+\begin_layout Paragraph
+(42 words)
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+1.
+ Understand the wider context and importance of the project
+\end_layout
+
+\begin_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+a.
+ State the general topic and make a claim about why it is important.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Wireless mesh networking is a dynamically self-organized and self-healing
+ network architecture involving multiple wireless nodes and routers interconnect
+ed in an ad-hoc manner 
+\begin_inset LatexCommand \cite{Akyildiz2005}
+
+\end_inset
+
+.
+ There is a growing need for resilient and efficient networking technologies
+ that can be deployed in environments where networking infrastructure does
+ not exist.
+\end_layout
+
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+b.
+ Describe what is generally known about this topic.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+To determine the operational status of a wireless mesh network, active monitorin
+g must be done to capture statistics from each mesh node and aggregate them
+ into meaningful information.
+ Judging from flunctuations in the statstics the 
+\begin_inset Quotes eld
+\end_inset
+
+health
+\begin_inset Quotes erd
+\end_inset
+
+ of a wireless mesh network and whether the routing protocols and its supporting
+ infrastructure and other design factors has been effective enough to sustain
+ the mesh can be determined.
+\end_layout
+
+\begin_layout Standard
+There is usually no centralized network backbone present, such as 802.11
+ routers, that mesh nodes may use to forward networking traffic.
+ Therefore specialized routing protocols are used to forward traffic through
+ neighbouring nodes towards the desired destination, for example 
+\emph on
+Ad-hoc on-demand distance vector
+\emph default
+ routing (AODV) and 
+\emph on
+Dynamic source routing
+\emph default
+ (DSR) 
+\begin_inset LatexCommand \cite{1223819}
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+2.
+ Summarize previous research
+\end_layout
+
+\begin_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+a.
+ State the core ideas in the literature and structure them in a logical
+ sequence.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+There are several proposals for gathering management data in mobile networks.
+\end_layout
+
+\begin_layout Standard
+The most common approach using existing standards would be using the 
+\emph on
+Simple Network Management Protocol
+\emph default
+ (SNMP) 
+\begin_inset LatexCommand \cite{Henderson2006}
+
+\end_inset
+
+.
+ A 
+\emph on
+manager
+\emph default
+ is responsible for polling a number of 
+\emph on
+SNMP agents
+\emph default
+ within nodes present on the mesh for useful variables regarding the node's
+ condition.
+ To achieve almost real-time monitoring, the poll interval must be frequent
+ enough.
+ However, this results in additional traffic within the mesh that may overload
+ the network and impact its performace.
+\end_layout
+
+\begin_layout Standard
+To avoid this, Chen at al.
+ proposed the 
+\emph on
+
+\begin_inset Quotes els
+\end_inset
+
+Ad-hoc Network Management Protocol
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+ (ANMP), an architecture that clusters nodes hierarchically to reduce the
+ amount of traffic directly between manager and agents 
+\begin_inset LatexCommand \cite{Chen1999}
+
+\end_inset
+
+.
+ Shen at al.
+ identifies that in a wireless mesh network consisting of highly mobile
+ nodes there needs to be a framework which can better adapt to dynamically
+ changing network conditions 
+\begin_inset LatexCommand \cite{Shen2003}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ramachandran et al.
+ proposes a different approach that takes advantage of less mobile yet more
+ capable nodes for pervasive monitoring 
+\begin_inset LatexCommand \cite{Ramachandran2004}
+
+\end_inset
+
+.
+ The 
+\emph on
+Distributed Architecture for MONitoring mobile networks
+\emph default
+ (DAMON) introduces two unique concepts, categorising management data in
+ relation to temporal significance, and 
+\emph on
+data sinks
+\emph default
+ for aggregating information.
+\end_layout
+
+\begin_layout Standard
+The findings from these experiments is extensively documented by Kiese and
+ Mauve 
+\begin_inset LatexCommand \cite{1223819}
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+b.
+ Draw conclusions from the literature review.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Compared to wireless mesh routing protocols and design however, research
+ on wireless monitoring and visualization is still quite scarce.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+3.
+ Prepare for the current research
+\end_layout
+
+\begin_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+a.
+ List the gaps.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+There is no sufficient research on multiple channel wireless mesh networks.
+\end_layout
+
+\begin_layout Standard
+It has not been documented how much does management architecture affect
+ the health of the mesh, and how well does a distributed approach in monitoring
+ fare compared to conventional methods, e.g.\InsetSpace \space{}
+1 SNMP manager with many agents.
+\end_layout
+
+\begin_layout Standard
+It is also not well documented as how link measurements from SNMP agents
+ can be collected and interpreted to determine the health of the mesh as
+ there are no standardized benchmark settings for conducting experiments.
+\end_layout
+
+\begin_layout Standard
+There are not many publicly available tools for aggregating collected monitoring
+ data in wireless mesh networks and visualizing them in a coherent interface.
+\end_layout
+
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+b.
+ List possible methods for addressing the gaps.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+The current implementation of AODV by National ICT Australia (NICTA) can
+ be analyzed to determine its efficiency, with improvements made so it can
+ faster adapt to changes in link availability.
+\end_layout
+
+\begin_layout Standard
+The effect of monitoring on a wireless mesh network may be studied by adjusting
+ the variables on a live mesh testbed and then documenting the results.
+\end_layout
+
+\begin_layout Standard
+Improvements may be made to the mesh software to support extended data.
+\end_layout
+
+\begin_layout Standard
+A modular software stack that can be deployed on wireless mesh testbeds
+ may be designed.
+\end_layout
+
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+c.
+ Select a gap and a methodogy for addressing it.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+The gap selected is the lack of tools that can be used for monitoring and
+ visualizing wireless mesh networks.
+ As such, a software package will be developed by taking multiple publicly
+ available tools offering a subset of the features required and combining
+ them into a stack that can be deployed at a wireless mesh testbed.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+4.
+ Research plan
+\end_layout
+
+\begin_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+a.
+ State the overall goals and specific aims of the research
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+The aim of the research is to develop an intuitive interface to NICTA's
+ wireless mesh monitoring system.
+ This involves building modules for collecting monitoring data, aggregating
+ into meaningful graphs, and presenting them coherently.
+ With it the network topology, overall health and traffic flow of the wireless
+ mesh can be observed, which allows the underlying design of the mesh to
+ be evaluated more easily.
+\end_layout
+
+\begin_layout Standard
+The data collected will include generic measurements such as data throughput,
+ packet loss, response times and routing, as well as specific 802.11 information,
+ such as link quality, signal strength and noise.
+\end_layout
+
+\begin_layout Standard
+Studies will also be carried out by applying different approaches to the
+ wireless mesh monitoring system while observing the overall status of the
+ mesh.
+ It should then be determined whether it is possible to significantly improve
+ data dissemination within the mesh using a decentralized approach compared
+ to the conventional methods.
+\end_layout
+
+\end_deeper
+\begin_layout List
+\labelwidthstring MM
+
+\series bold
+b.
+ Outline the methods to be followed
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The interface to the wireless mesh network monitoring system will be achieved
+ using the following methods:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Replacing the original modules by NICTA so that it can be easily maintained
+ in the future.
+ This includes rewriting the SNMP scripts and replacing the network topology
+ generation module with one that is more capable of meeting our needs.
+\end_layout
+
+\begin_layout Itemize
+Extending the monitoring system to support reading custom measurement attributes
+ via SNMP and implementing SNMP traps so that link failures can be quickly
+ identified and visualized as such.
+\end_layout
+
+\begin_layout Itemize
+Designing an interactive interface that can incorporate multiple graphs.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+When a wireless mesh testbed has been set up, the following experiments
+ will be carried out:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Determining if the efficiency of a wireless mesh network will be severely
+ impacted by traffic generated from the underlying management architecture.
+\end_layout
+
+\begin_layout Itemize
+Determine whether using an external channel for gathering management data
+ will significantly improve the situation.
+\end_layout
+
+\begin_layout Itemize
+Estimate whether a decentralized management architecture is significantly
+ better than the conventional method.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Paragraph
+(932 words)
+\end_layout
+
+\begin_layout Paragraph
+A copy of this submission was emailed to my supervisor on 27/03/2007 at
+ 1pm.
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[ieeetr]{Thesis}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

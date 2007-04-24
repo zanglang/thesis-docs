@@ -1,0 +1,403 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass report
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3.5cm
+\rightmargin 3cm
+\bottommargin 3.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Description
+\paragraph_spacing other 0
+Name: Zhe Wei Chong
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing other 0
+Student\InsetSpace ~
+Number: 40899013
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing other 0
+Supervisor: Marius Portmann
+\end_layout
+
+\begin_layout Description
+\paragraph_spacing other 0
+Project\InsetSpace ~
+Title: Analysis and Extending a Wireless Mesh Network Monitoring
+ System
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I.
+ Akyildiz and X.
+ Wang, 
+\begin_inset Quotes eld
+\end_inset
+
+A survey on wireless mesh networks,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Communications Magazine
+\emph default
+, 
+\emph on
+IEEE
+\emph default
+, vol.
+ 43, pp.
+ S23-S30, Sept.
+ 2005.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+Summary: This paper serves as an in-depth introduction to wireless mesh
+ networking, covering current advances in the field such as routing protocols
+ and algorithms for efficiently forwarding packets in unplanned networks,
+ usage scenarios and issues in design and deployment, and techniques for
+ managing and monitoring mesh networks.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+Relevance: Because it covers a wide range of topics this paper will serve
+ as a supplementary information source for my research on wireless mesh
+ networks.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+W.
+ Kiess and M.
+ Mauve, 
+\begin_inset Quotes eld
+\end_inset
+
+A survey on real-world implementations of mobile ad-hoc networks,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Ad Hoc Networks
+\emph default
+, vol.
+ 5, pp.
+ 324-339, Apr.
+ 2007.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+\noindent
+Summary: This fairly new paper documents a number of studies experimenting
+ with real-world implementations of mobile ad-hoc networks (
+\noun on
+MANET
+\noun default
+s) and methodologies used, and summarizes observations and key findings
+ from these experiments.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+Relevance: This paper is interesting because it documents several wireless
+ mesh experiments that are in real-world use for serving Internet access
+ on medium to large scales, in which the network topology, routing protocols
+ and particularly management tools used are being tested in a very realistic
+ manner.
+ I will be investigating how data gathering and dissemination is done on
+ several of these experiments.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+\noindent
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+C.
+ Perkins and E.
+ Belding-Royer, 
+\begin_inset Quotes eld
+\end_inset
+
+Ad-hoc on-demand distance vector routing,
+\begin_inset Quotes erd
+\end_inset
+
+ in 
+\emph on
+Mobile Computing Systems and Applications, 1999.
+ Proceedings.
+ WMCSA '99.
+ Second IEEE Workshop on
+\emph default
+, (New Orleans, LA, USA), pp.
+ 90-100, 25-26 Feb.
+ 1999.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+\noindent
+Summary: This is the original paper that introduces Ad-hoc On-demand Distance
+ Vector (AODV) routing as a routing algorithm for mobile ad-hoc networks.
+ AODV is a 
+\begin_inset Quotes els
+\end_inset
+
+passive
+\begin_inset Quotes ers
+\end_inset
+
+ routing protocol, that is it does not store a persistent list of nodes
+ and routes to forward packets but only computes routes when there is a
+ need for traffic flow, making it more power and bandwidth efficient in
+ certain use cases.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+Relevance: NICTA's wireless mesh implementation uses AODV as its routing
+ protocol.
+ If time allows it my thesis may be adapted towards studying how efficient
+ dissemination of gathered data (e.\InsetSpace \thinspace{}
+g.\InsetSpace \space{}
+SNMP) can be achieved in relation to
+ routing protocol used.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+S.
+ G.
+ Glisic, 
+\emph on
+Advanced Wireless Networks: 4G Technologies
+\emph default
+.
+ England: John Wiley & Sons, 2006.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+\noindent
+Summary: This book deals with fourth generation wireless communication networks.
+ Several chapters are dedicated to covering ad-hoc networks, common routing
+ protocols and algorithms and mobile network management.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+Relevance: Because this book has a very extensive coverage of currently
+ established research as well as being the most recently updated source
+ of this bibliography list it will serve as a main information source for
+ my research.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+W.
+ Chen, N.
+ Jain, and S.
+ Singh, 
+\begin_inset Quotes eld
+\end_inset
+
+ANMP: ad hoc network management protocol,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\emph on
+Selected Areas in Communications, IEEE Journal on
+\emph default
+, vol.
+ 17, pp.
+ 1506-1531, Aug.
+ 1999.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+\noindent
+Summary: This paper proposes a new protocol for managing MANETs using a
+ hierarchical approach.
+ Individual nodes, or 
+\begin_inset Quotes els
+\end_inset
+
+agents
+\begin_inset Quotes ers
+\end_inset
+
+, are grouped together according to proximity to form clusters.
+ At least one node from each cluster becomes a 
+\begin_inset Quotes els
+\end_inset
+
+cluster\InsetSpace \space{}
+head
+\begin_inset Quotes ers
+\end_inset
+
+, and acts as an intermediary to the 
+\begin_inset Quotes els
+\end_inset
+
+network manager
+\begin_inset Quotes ers
+\end_inset
+
+.
+ Using SNMP polling, network information is then gathered and propagated
+ upwards the tree, with the manager being the root, making it more efficient
+ than conventional techniques.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+Relevance: The wireless mesh management architecture is not strictly within
+ the scope of my thesis, but I have been interested in looking into recent
+ proposals that might be able to address some issues my supervisor has mentioned
+, namely scalability and network efficiency.
+ Currently network information is gathering by having nodes polled centrally.
+ Traffic generated from this technique incurs a certain overhead on the
+ wireless mesh, which might also limit its scalability.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset VSpace bigskip
+\end_inset
+
+C.-C.
+ Shen, C.
+ Jaikaeo, C.
+ Srisathapornphat, and Z.
+ Huang, 
+\begin_inset Quotes eld
+\end_inset
+
+The Guerrilla management architecture for ad hoc networks,
+\begin_inset Quotes erd
+\end_inset
+
+ in 
+\emph on
+MILCOM 2006.
+ Proceedings
+\emph default
+, vol.
+ 1, (Anaheim, California), pp.
+ 467-472vol.1, 7-10 Oct.
+ 2002.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+\noindent
+Summary: This paper suggests an intelligent self-configurable architecture
+ for managing nodes in MANETs that is scalable to a large number of heterogeneou
+s nodes.
+ Like ANMP, Guerrilla uses a clustering approach for node management.
+ Nodes are grouped into individual manageable 
+\begin_inset Quotes els
+\end_inset
+
+agencies
+\begin_inset Quotes ers
+\end_inset
+
+, with at least one 
+\begin_inset Quotes els
+\end_inset
+
+nomadic\InsetSpace \space{}
+managers
+\begin_inset Quotes ers
+\end_inset
+
+ elected from a pool of capable nodes to perform management tasks e.\InsetSpace \thinspace{}
+g.\InsetSpace \space{}
+SNMP
+ data collection.
+\end_layout
+
+\begin_layout List
+\labelwidthstring 00.00.0000
+Relevance: Same as above, but this architecture allows more management flexibili
+ty and adaptability to changing network conditions.
+\end_layout
+
+\begin_layout Paragraph
+A copy of this submission was emailed to my supervisor on 13/03/07 at 1pm.
+\end_layout
+
+\end_body
+\end_document

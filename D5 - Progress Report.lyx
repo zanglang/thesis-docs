@@ -1,0 +1,1918 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme pslatex
+\graphics default
+\paperfontsize 11
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Analyzing and Extending a Wireless 
+\newline
+Mesh Network Monitoring System
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align center
+
+\series bold
+\size larger
+Project Progress Report
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align center
+
+\series bold
+\size large
+Name:
+\series default
+ Zhe Wei Chong
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align center
+
+\series bold
+\size large
+Student\InsetSpace \space{}
+Number
+\series default
+: 40899013
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
+\align center
+
+\series bold
+\size large
+Supervisor:
+\series default
+ Marius Portmann
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \tableofcontents{}
+
+\end_inset
+
+
+\newpage
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Subsection
+Statement of Purpose
+\end_layout
+
+\begin_layout Standard
+There is a growing need for resilient and efficient networking technologies
+ that can be deployed in environments where networking infrastructure does
+ not exist.
+ Wireless mesh networking is one of the recent developments in electronic
+ communications that aims to achieve this.
+\end_layout
+
+\begin_layout Standard
+To determine the operational status of a wireless mesh network, the mesh
+ may be monitored to record meaningful information and other useful statistics.
+ Such statistics usually include wireless link information, network utilization,
+ latency and packet routing history.
+ These measurements can be aggregated and then analyzed.
+ By observing the fluctuations in the resulting data, one may be able to
+ estimate the overall 
+\begin_inset Quotes eld
+\end_inset
+
+health
+\begin_inset Quotes erd
+\end_inset
+
+ of the mesh itself.
+ As an example, an observed high packet loss rate and low signal strength
+ hints that the wireless links may be too weak or too far apart.
+ By collecting multiple relevant data for a wireless mesh network in one
+ place, the process of troubleshooting wireless mesh networks may be greatly
+ improved.
+ The data can also be visualized and displayed as well, for example by plotting
+ measurements taken against time, allowing the observer to clearly see any
+ faults in the wireless mesh network.
+\end_layout
+
+\begin_layout Standard
+This thesis aims to research methods for monitoring and visualizing wireless
+ mesh networks.
+ The relevance of the project stems from several issues that need to be
+ addressed for the development of wireless mesh networking by National ICT
+ Australia (NICTA).
+ Implementing an efficient monitoring and visualization system will improve
+ researchers
+\begin_inset Quotes ers
+\end_inset
+
+ ability to troubleshoot the mesh and speed up its development.
+ There has not been much previous research on this area, as well as publicly
+ available tools built for this purpose.
+\end_layout
+
+\begin_layout Standard
+At the same time, there has been renewed interest on the usage of multiple
+ radio transmission channels in wireless mesh networking, although research
+ on this area remains scarce.
+ It is also not well established as to how much does a wireless mesh management
+ architecture affect the efficiency of the mesh, and what are viable options
+ for deploying one such framework.
+ It is common to poll each node on the mesh network from a centralized setup,
+ where each node responds to poll requests with management data.
+ However there has been numerous proposals on decentralizing the management
+ architecture for efficiency reasons.
+ This project aims to carry out a number of studies for testing these concepts.
+ Documenting the observations over the period of the project will allow
+ better understanding on issues specific to this installation, such as routing
+ protocol recovery and throughput.
+\end_layout
+
+\begin_layout Subsection
+Project Outline
+\end_layout
+
+\begin_layout Standard
+The main goal for this project is to implement a software package for monitoring
+ and visualizing wireless mesh networks.
+ This will involve analyzing previous work by NICTA, and implementing a
+ number of improvements allowing it to be more efficient.
+ The package consists of a number of separate modules, where each one will
+ be built from existing and easily available software tools so it can be
+ deployed on any number of mesh networks with minimum configuration.
+ The modules include an interactive graphical interface for visualizing
+ the traffic and network topology of wireless mesh networks, software to
+ be deployed alongside existing wireless mesh architecture for gathering
+ monitoring data, and other extensions to improve the workings of the wireless
+ mesh network.
+\end_layout
+
+\begin_layout Standard
+In a real-world deployment, a wireless mesh network is likely to consist
+ of up to hundreds or more of mesh nodes, scattered unevenly over an arbitrary
+ coverage area.
+ As such, the management architecture must be capable of scaling to a network
+ of such size.
+ To manage this mesh several factors to be considered would be network efficienc
+y, reliability, accuracy, and especially in the case of user interfaces,
+ ease of use.
+ Several studies will be carried out based on a small-scale testbed in NICTA
+ to formulate a hypothesis on efficient network management.
+ As previously written, there is not much research on the collection and
+ interpretation of monitoring data to determine the health of a mesh network.
+ There are no standardized benchmark settings for conducting these experiments
+ as well.
+ Using NICTA
+\begin_inset Quotes ers
+\end_inset
+
+s testbed, an experimental monitoring system will be deployed and tested.
+ Data gathered from the system is then visualized on the web interface.
+\end_layout
+
+\begin_layout Standard
+Traffic generated from the testbed will be analyzed to evaluate the efficiency
+ of the monitoring system.
+ This will be determined by comparing captured traffic against those generated
+ by the monitoring system on the testbed.
+ A monitoring system should have minimal impact of the wireless mesh itself
+ by generating less network overhead, or it may potentially affect the throughpu
+t of other traffic.
+ There has been previous research on reducing this overhead, including using
+ a separate transmission medium for management traffic, and decentralizing
+ the monitoring system.
+ Some of these proposals will be reproduced on this testbed and evaluated.
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Section
+Background
+\end_layout
+
+\begin_layout Subsection
+Wireless Mesh Networking
+\end_layout
+
+\begin_layout Standard
+A wireless mesh network is a dynamically self-organized, self-configuring
+ and self-healing networking architecture consisting of multiple wireless
+ nodes interconnected in an ad-hoc manner 
+\begin_inset LatexCommand \cite{Akyildiz2005}
+
+\end_inset
+
+.
+ Nodes may contain mesh routing functions that forward packets on behalf
+ of connected neighbors within range, wherein network traffic now flows
+ through multiple 
+\begin_inset Quotes els
+\end_inset
+
+hops
+\begin_inset Quotes ers
+\end_inset
+
+ to reach their destination, or they may be simple mesh clients connected
+ to the wireless mesh a la architecture mode.
+ Using this networking architecture the coverage range of a wireless network
+ can be extended greatly.
+ This ability that allows them to be deployed where no existing networking
+ architecture is in place makes them suitable for applications such as emergency
+ response, transport applications (for example 
+\begin_inset LatexCommand \cite{Obana2006}
+
+\end_inset
+
+), community networking (for example the MIT 
+\begin_inset Quotes els
+\end_inset
+
+Roofnet
+\begin_inset Quotes ers
+\end_inset
+
+ project 
+\begin_inset LatexCommand \cite{1080833}
+
+\end_inset
+
+) and rural environments.
+\end_layout
+
+\begin_layout Standard
+Akyildiz et al.\InsetSpace \space{}
+identifies three type of mesh networks compositions 
+\begin_inset LatexCommand \cite{Akyildiz2005}
+
+\end_inset
+
+.
+ 
+\emph on
+Client mesh
+\emph default
+ networks are identical to conventional ad\SpecialChar \-
+hoc networks.
+ The mesh consists of an arbitrary number of client nodes that participate
+ in mesh packet routing themselves, and may also provide end-user services.
+ As such, there is no need for a centralized service provider to manage
+ the operation of the network itself, for example conventional network routers.
+ However, physical requirements for client nodes such as battery and processing
+ power will be considerably higher in order to support these additional
+ functions; currently, this problem still remains an active research area
+ for the use of low energy consumption mobile ad\SpecialChar \-
+hoc networks.
+ On the other hand, 
+\emph on
+infrastructure mesh
+\emph default
+ networks rely on centralized mesh nodes in the network to provide routing
+ functionality.
+ Mesh routers form the backbone of the wireless network, while mesh clients
+ passively consume the service provided by the routers without participating
+ in routing, thus easing the problem of power requirements mentioned previously.
+ Network connectivity may be derived from already existing technologies
+ such as IEEE 802.11, GPRS and even Ethernet, allowing common end-user devices
+ such as mobile phones and Wi\SpecialChar \-
+Fi capable laptop computers to transparently
+ access the mesh network.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Hybrid mesh
+\emph default
+ networks inherit the advantages of both client and infrastructure mesh
+ networks by combining both architectures.
+ Client nodes may be directly connected to mesh routers, or they may implement
+ routing functionality and participate in meshing with other nodes as well,
+ at the same time enhancing the existing network architecture.
+ Due to its flexibility and attractiveness for commercial use this approach
+ has been gaining traction in research, and is relevant to the aims of this
+ project.
+\end_layout
+
+\begin_layout Subsection
+Network Monitoring
+\end_layout
+
+\begin_layout Standard
+The performance of wireless communications may be affected by several factors.
+ The medium itself is highly unreliable and may be easily influenced by
+ environmental conditions and radio interference.
+ Other networking factors such as protocols used, contention of bandwidth
+ and hardware or software faults further complicate the process of diagnosing
+ the network.
+ By observing the packet loss rate and throughput of a wireless mesh network,
+ this makes identify problems in the wireless mesh network easier.
+ Comparing these against other collected data such as network topology and
+ medium statistics allows erratic links in the mesh to be pinpointed and
+ singled out 
+\begin_inset LatexCommand \cite{1163597}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+There are several methods as to how data may be gathered.
+ The most common approach using existing standards is by using the 
+\begin_inset Quotes els
+\end_inset
+
+
+\emph on
+Simple Network Management Protocol
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+ (SNMP) 
+\begin_inset LatexCommand \cite{Henderson2006}
+
+\end_inset
+
+.
+ An 
+\emph on
+SNMP manager 
+\emph default
+is responsible for polling a preconfigured number of nodes present on the
+ mesh containing 
+\emph on
+SNMP agents
+\emph default
+.
+ An agent is an executable software module which mediates the access of
+ information in the nodes by the manager.
+ Useful variables regarding the nodes
+\begin_inset Quotes ers
+\end_inset
+
+ condition are described as 
+\emph on
+managed objects
+\emph default
+, and are stored in a 
+\emph on
+Management Information Base
+\emph default
+ (MIB).
+ The level of detail can be further extended with vendor-specific MIBs,
+ for example wireless signal strength and MAC address.
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \label{SNMP-performance}
+
+\end_inset
+
+However, to achieve almost real-time monitoring, the SNMP poll interval
+ must be frequent enough.
+ This results in additional traffic within the mesh that may overload the
+ network and impact its performance.
+ In their multi\SpecialChar \-
+hop wireless network study Qiu et al.\InsetSpace \space{}
+reports that data collection
+ overhead is relatively low and will not affect significantly application
+ traffic in the network 
+\begin_inset LatexCommand \cite{1163597}
+
+\end_inset
+
+.
+ However the scale of the test is relatively small with only up to 50 nodes,
+ thus the study may not be accurate in real-world wireless mesh deployments.
+ Henderson and Kotz observes that an interval of below 5 minutes may already
+ saturate a wired LAN 
+\begin_inset LatexCommand \cite{Henderson2006}
+
+\end_inset
+
+.
+ The network addresses of the agents must also be identified beforehand
+ for the SNMP poll messages to be transmitted.
+ This makes traditional SNMP unsuitable to be used with wireless mesh networks,
+ where mobile mesh nodes may be capable of leaving and joining the mesh
+ network at any time.
+ Besides, in client mesh networks where nodes may be at least two hops away
+ from the SNMP manager the traffic gathered will also be inaccurate as it
+ may be skewed towards the nodes with many indirect neighbors, leading to
+ an inaccurate analysis.
+\end_layout
+
+\begin_layout Standard
+Sending management traffic through a wireless mesh network mixing with legitimat
+e traffic is known as 
+\begin_inset Quotes eld
+\end_inset
+
+in-band
+\begin_inset Quotes erd
+\end_inset
+
+.
+ As previously mentioned this is reportedly undesirable, as it may potentially
+ affect the performance of the mesh.
+ Relying on in-band data distribution may also cause nodes to be unreachable
+ for management purposes if the links used for mesh routing are disconnected
+ 
+\begin_inset LatexCommand \cite{Ramachandran2005}
+
+\end_inset
+
+.
+ An alternate method is to use an external channel dedicated for delivering
+ management traffic to other stations on the network, or 
+\begin_inset Quotes eld
+\end_inset
+
+out-of-band
+\begin_inset Quotes erd
+\end_inset
+
+.
+ In conditions where the wireless mesh routers are close to each other Ethernet
+ may be used as the transmission medium.
+ Ramachandran et al.\InsetSpace \space{}
+proposes stacking additional wireless mesh routers on
+ existing ones, carrying out management functions via a second wireless
+ mesh network 
+\begin_inset LatexCommand \cite{Ramachandran2005}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Another commonly used tool for gathering statistics regarding the data on
+ a network is packet 
+\begin_inset Quotes eld
+\end_inset
+
+sniffing
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset LatexCommand \cite{Qiu2003}
+
+\end_inset
+
+, which refers to the capturing of all network traffic that can be listened
+ to by a machine.
+ The network interface will have be placed into 
+\begin_inset Quotes eld
+\end_inset
+
+promiscuous
+\begin_inset Quotes erd
+\end_inset
+
+ mode in order to receive the network traffic.
+ These traffic data can then be analyzed using specific tools to retrieve
+ useful information, such as sender and recipient addresses, protocol used
+ and, by stripping away low-layer packet headers, contents of higher-layer
+ packets.
+\end_layout
+
+\begin_layout Subsection
+Distributed Network Management
+\end_layout
+
+\begin_layout Standard
+To reduce the amount of traffic directly between manager and agents Chen
+ et al.\InsetSpace \space{}
+proposed the 
+\emph on
+
+\begin_inset Quotes els
+\end_inset
+
+Ad\SpecialChar \-
+hoc Network Management Protocol
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+ (ANMP) for mobile ad\SpecialChar \-
+hoc networks, an architecture that clusters nodes hierarchi
+cally 
+\begin_inset LatexCommand \cite{Chen1999}
+
+\end_inset
+
+.
+ Agents that are near to each other are clustered together, electing one
+ or more capable nodes as their 
+\emph on
+cluster head
+\emph default
+, which in turn is managed by a 
+\emph on
+network manager
+\emph default
+.
+ ANMP implements a MIB extension to return geographical positioning, battery
+ power and other cluster-related information.
+ The cluster head retrieves these measurements from all of its agents, aggregate
+s it and transmits it to its manager.
+ As mobile nodes move around they can leave and join clusters with very
+ low message overheads.
+ This design drastically increases the statistics gathering process efficiency
+ while allowing managed nodes to be mobile.
+\end_layout
+
+\begin_layout Standard
+Shen et al.\InsetSpace \space{}
+identifies that in a multi\SpecialChar \-
+hop ad\SpecialChar \-
+hoc network consisting of many
+ highly mobile nodes there needs to be a framework which can better adapt
+ to dynamically changing network conditions 
+\begin_inset LatexCommand \cite{Shen2002}
+
+\end_inset
+
+.
+ They proposed the 
+\emph on
+
+\begin_inset Quotes els
+\end_inset
+
+Guerrilla management architecture
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+, which allows manager nodes, or 
+\emph on
+nomadic managers
+\emph default
+, to be more autonomous, similar to the concepts of 
+\emph on
+agents
+\emph default
+ in artificial intelligence.
+\end_layout
+
+\begin_layout Standard
+Ramachandran et.
+ al.\InsetSpace \space{}
+proposes a different approach that takes advantage of less mobile yet
+ more capable nodes for pervasive monitoring 
+\begin_inset LatexCommand \cite{Ramachandran2004}
+
+\end_inset
+
+.
+ The 
+\emph on
+
+\begin_inset Quotes els
+\end_inset
+
+Distributed Architecture for MONitoring mobile networks
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+ (DAMON) introduces two unique concepts, categorizing management data in
+ relation to temporal significance, and 
+\emph on
+data sinks
+\emph default
+ for aggregating information.
+\end_layout
+
+\begin_layout Subsection
+Current Work and Problems
+\end_layout
+
+\begin_layout Standard
+As part of the Smart Transport and Roads (STaR) project, NICTA is developing
+ a wireless mesh network implementation as a traffic systems communication
+ platform.
+ The current experimental mesh testbed consists of a number of Linksys WRT54GL
+ multi-radio wireless routers using the 
+\emph on
+
+\begin_inset Quotes els
+\end_inset
+
+Ad\SpecialChar \-
+hoc On-demand Distance Vector
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+ (AODV) routing protocol 
+\begin_inset LatexCommand \cite{rfc3561}
+
+\end_inset
+
+.
+ The wireless routers are installed with the OpenWRT Linux distribution
+ and 
+\begin_inset Quotes els
+\end_inset
+
+
+\emph on
+aodvd
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+ (AODV Daemon) to facilitate the mesh routing process.
+ The routers are also connected via Ethernet link, in which management data
+ is gathered.
+ While the routers have to be placed in proximity of each other due to space
+ limitations, packet filtering is configured in each of the devices
+\begin_inset Quotes ers
+\end_inset
+
+ routing table forcing packets to be directly only through certain paths
+ of the network.
+ Thus, a wireless mesh topology may be simulated as if there is a physical
+ distance between the nodes and each mesh router is only within signal range
+ of a selected few of its neighbors.
+\end_layout
+
+\begin_layout Standard
+Wireless communication is limited to half-duplex transmissions in that while
+ receiving radio signals a wireless radio must be placed into promiscuous
+ listening mode and thus cannot send at the same time 
+\begin_inset LatexCommand \cite{Henderson2006}
+
+\end_inset
+
+, thus halving the effective throughput of the network link.
+ Mähönen et al.\InsetSpace \space{}
+also observes that TCP and UDP throughput drops rapidly as
+ the number of hops in a homogeneous multi\SpecialChar \-
+hop 802.11 network setup with a
+ single radio per node
+\begin_inset LatexCommand \cite{Maehoenen2006}
+
+\end_inset
+
+.
+ Recent research on using multiple radios prove that it is capable to address
+ these shortcomings.
+ A multi\SpecialChar \-
+radio wireless router is equipped with more than one wireless network
+ interface, thus capable of transmitting and receiving over multiple radio
+ channels at the same time.
+ This approach effectively increases the radio spectrum bandwidth available,
+ and by reducing interference and contention in the network helps to minimize
+ the delay in data transmissions, but it also increases the complexity of
+ programming in order to provide proper synchronization between radio interfaces.
+ In a recent study by NICTA, Pirzada et al.\InsetSpace \space{}
+proves that an improvement to
+ the AODV protocol to better support multiple radios performs significantly
+ better, especially under high load where more network contention lead to
+ a higher packet loss rate 
+\begin_inset LatexCommand \cite{1164791}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Currently, there are several problems that need to be addressed for the
+ wireless mesh project, some of which will be addressed in this study.
+\end_layout
+
+\begin_layout Standard
+SNMP is used to monitor the traffic flow for each node in the mesh.
+ A central server executes several scripts that polls a preconfigured number
+ of mesh routers over Ethernet to retrieve the current data rate and established
+ routes by AODV.
+ However, this has been proven inefficient (see Section 
+\begin_inset LatexCommand \ref{SNMP-performance}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+The gathered data is parsed and used to generate graphs, with one image
+ file per network interface.
+ However, in a mesh network populated with many multi\SpecialChar \-
+radio routers presenting
+ all of the images will require a large screen space.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Interest on mobile ad\SpecialChar \-
+hoc networks has been considerably active for the past
+ decade, with a large amount of research dedicated to solving problems in
+ wireless mesh networking recently.
+ The concept opens up many interesting ideas that may be applied to commercial
+ and industrial applications, however we have yet to see widespread use
+ of ad\SpecialChar \-
+hoc networking principles in these areas.
+ Mähönen et al.\InsetSpace \space{}
+confirms this, and suggests that this field is not yet mature,
+ and that there is still many problems in the aspects of engineering theory
+ and applications that require solving 
+\begin_inset LatexCommand \cite{Maehoenen2006}
+
+\end_inset
+
+.
+ There is not much research on the the visualization of wireless mesh networks.
+ Moreover, the methods for building and deploying an efficient wireless
+ mesh monitoring architecture are not well established.
+ This thesis, as well as research work currently being undertaken at NICTA,
+ will touch on these concepts that are still not yet fully explored.
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\end_layout
+
+\begin_layout Section
+Project Plan
+\end_layout
+
+\begin_layout Subsection
+Overall Goals and Specific Aims
+\end_layout
+
+\begin_layout Standard
+The aim of the research is to develop an intuitive interface to NICTA
+\begin_inset Quotes ers
+\end_inset
+
+s wireless mesh monitoring system.
+ This involves building modules for collecting monitoring data, aggregating
+ into meaningful graphs, and presenting them coherently.
+ With it the network topology, overall health and traffic flow of the wireless
+ mesh can be observed, which allows the underlying design of the mesh to
+ be evaluated more easily.
+\end_layout
+
+\begin_layout Standard
+The data collected will include generic measurements such as data throughput,
+ packet loss, response times and routing, as well as specific 802.11 information,
+ such as link quality, signal strength and noise.
+ To achieve this an SNMP MIB extension will have to be prepared that is
+ capable of retrieving these measurements from the mesh node itself.
+ This data is then fed to a graphical imaging tools to be displayed on the
+ web interface.
+\end_layout
+
+\begin_layout Standard
+Studies will also be carried out by applying different approaches to the
+ wireless mesh monitoring system while observing the overall status of the
+ mesh.
+ This is particularly to confirm whether it is possible to significantly
+ improve data dissemination within the mesh using a decentralized approach
+ compared to conventional methods.
+\end_layout
+
+\begin_layout Subsection
+Tasks
+\end_layout
+
+\begin_layout Standard
+The project will include several tasks executed in parallel, described as
+ follows.
+\end_layout
+
+\begin_layout Subsubsection
+Web Interface
+\end_layout
+
+\begin_layout Standard
+A basic web interface will be created to display the images for each wireless
+ mesh node interface generated from the SNMP gatherers.
+ The original interface by NICTA was created within a Perl script, making
+ it hard to modify if changes are required.
+ The new web interface should be further improved to enhance its usability
+ and aesthetics.
+ To allow the displaying of multiple graph images on the screen, interactive
+ controls will be added to allow toggling of appearance, hiding graphical
+ details from the user if it is not necessary.
+ It will also act as a simple control panel for the data gatherer modules
+ (see Section 
+\begin_inset LatexCommand \ref{sub:tasks-SNMP}
+
+\end_inset
+
+), allowing the interface update and polling interval to be changed dynamically.
+ As an overview, the design itself is rather simple: The interface is split
+ in three sections, that is, network topology diagram, traffic/statistics
+ graphs, and control panel for manipulating the display preferences.
+\end_layout
+
+\begin_layout Subsubsection
+SNMP
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \label{sub:tasks-SNMP}
+
+\end_inset
+
+The original modules by NICTA will have to be rewritten to make it more
+ readable and modular so it may be easily maintained in the future.
+ This includes rewriting the SNMP scripts in Python and sending the data
+ to RRDtool 
+\begin_inset LatexCommand \cite{Oetiker}
+
+\end_inset
+
+ via Python bindings to generate the traffic graphs.
+\end_layout
+
+\begin_layout Standard
+The monitoring system architecture will be extended to support reading custom
+ attributes via SNMP, namely 802.11 information for each wireless interface.
+ This will be achieved by implementing a custom SNMP MIB that retrieves
+ these readings from the operating system so that it may be read by an SNMP
+ manager.
+ SNMP traps will be implemented to inform the SNMP manager when a link failure
+ has been identified in any of the network interfaces.
+ This allows the wireless connection breakage to be quickly identified and
+ visualized on the web interface.
+\end_layout
+
+\begin_layout Subsubsection
+Testbed
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \label{sub:Testbed}
+
+\end_inset
+
+When a wireless mesh testbed has been setup, several tests will be carried
+ out to justify the efficiency of the mesh monitoring system.
+\end_layout
+
+\begin_layout Standard
+Management traffic on the mesh will be captured and measured to determine
+ if the efficiency of a wireless mesh network will be severely impacted
+ by traffic generated from the underlying management architecture, namely
+ SNMP.
+ By comparing traffic captured with no SNMP monitoring and some SNMP monitoring
+ with differing intervals, the overhead of the management architecture can
+ be measured.
+ Another test will also determine whether using a separate or external channel
+ for gathering management data will significantly improve the aforementioned
+ situation.
+ This involves alternating the SNMP management infrastructure from polling
+ via Ethernet, as it currently does, and polling through the wireless mesh
+ itself.
+ To realistically simulate network usage, real-time data streams may be
+ executed at the same time.
+\end_layout
+
+\begin_layout Standard
+In the experiments, wireless network traffic will be captured using active
+ packet sniffing tools, such as 
+\begin_inset Quotes els
+\end_inset
+
+
+\emph on
+Wireshark
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+.
+ To obtain meaningful data the captured data will have to be 
+\begin_inset Quotes eld
+\end_inset
+
+cleansed
+\begin_inset Quotes erd
+\end_inset
+
+ by analyzing and categorizing the packets into normal traffic, such as
+ TCP and HTTP packets, and management traffic generated by SNMP.
+ This allows a clean comparison of the two packet numbers.
+\end_layout
+
+\begin_layout Subsection
+Software Resources
+\end_layout
+
+\begin_layout Standard
+Any software and development tools that will be used for the duration of
+ this project are summarized in Table 
+\begin_inset LatexCommand \ref{tab:Software-Resources}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="2">
+<features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="center" valignment="middle" leftline="true" rightline="true" width="3in">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Category
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none" width="3.5in">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Software Used
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Operating System
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Ubuntu Linux, OpenWRT
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Programming Languages
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Python, PHP, C, HTML and JavaScript
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Development Environment
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Generic text editor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Other Software
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+NET SNMP, Weathermap, RRDtool, LightTPD, Wireshark
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{tab:Software-Resources}
+
+\end_inset
+
+Software Resources
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Timeline
+\end_layout
+
+\begin_layout Standard
+Due to the complexity of this project the tasks above will be assigned into
+ individual phases.
+ An estimated duration that starts from week 1 of the year is assigned to
+ each phase, which may not be accurate, but serves as a general guideline
+ for the development of project tasks and keeping track of deadlines.
+ Because this project is executed in parallel with research at NICTA, like
+ iterative software development lifecycles phases are not mutually exclusive;
+ some work will unevitably overlap with other phases if they have not been
+ completed, or returned to afterwards if new tasks and requirements have
+ been identified.
+ To affirm the timeline for this project, milestones are set to mark the
+ estimated completion time for certain significant tasks and related deliverable
+s for the thesis (See Section 
+\begin_inset LatexCommand \ref{sub:Project-Calendar}
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection
+Initiation Phase
+\end_layout
+
+\begin_layout Standard
+At this phase, requirements from NICTA was collected to identify the goals
+ for this project and documented.
+ Background research work was started to review any relevant literature,
+ gain background knowledge and identify current trends in the research area.
+ Aims for this project, a summary of work to be done and the results of
+ the literature review is included in this document.
+\end_layout
+
+\begin_layout Description
+Duration: 5 weeks
+\end_layout
+
+\begin_layout Subsubsection
+Phase I - Basic Monitoring and Visualization
+\end_layout
+
+\begin_layout Standard
+This phase includes the completion of a basic monitoring system and web
+ interface, with no additional features.
+ The monitoring system will be based on a miniature testbed of only 3 wireless
+ mesh routers installed with SNMP agents.
+ Both the web interface and gatherer modules will be rewritten.
+ The scripts will poll the wireless mesh routers using SNMP, and retrieve
+ a set number of statistics relevant to each network interface for the router.
+ The web interface will be capable of displaying traffic graphs generated
+ from the SNMP data, and a network topology map displaying link statistics.
+\end_layout
+
+\begin_layout Description
+Duration: 5 weeks
+\end_layout
+
+\begin_layout Subsubsection
+Phase II - Pilot Studies
+\end_layout
+
+\begin_layout Standard
+This phase involves further identifying issues that need to be addressed
+ for NICTA's wireless mesh network project and documenting previous research
+ and other ideas related to them.
+ This may include client auto-discovery on the monitoring system, studies
+ on multi\SpecialChar \-
+channel mesh, router link state exporting and reading, SNMP traps,
+ and alternative methods on gathering monitoring data and visualizing network
+ topologies.
+ Simple implementations to demonstrate these findings will be programmed
+ based on the miniature testbed.
+\end_layout
+
+\begin_layout Description
+Duration: 4 weeks
+\end_layout
+
+\begin_layout Subsubsection
+Phase III - Testbed Studies
+\end_layout
+
+\begin_layout Standard
+Several studies will be carried out on NICTA
+\begin_inset Quotes ers
+\end_inset
+
+s testbed (see Section 
+\begin_inset LatexCommand \ref{sub:Testbed}
+
+\end_inset
+
+).
+ These tests will also attempt to directly address problems faced by NICTA.
+ Based on data recorded from the tests, improvements to the management architect
+ure to increase its efficiency and suitability to large-scale wireless mesh
+ networks will be proposed and documented.
+\end_layout
+
+\begin_layout Description
+Duration: 10 weeks
+\end_layout
+
+\begin_layout Subsubsection
+Phase IV - Full Implementation
+\end_layout
+
+\begin_layout Standard
+All requirements have already been determined.
+ Planned features, such as web framework and control panel, will be implemented
+ and tested along the way.
+\end_layout
+
+\begin_layout Description
+Duration: 6 weeks
+\end_layout
+
+\begin_layout Subsubsection
+Phase V - Finalizing
+\end_layout
+
+\begin_layout Standard
+This phase includes finalizing the code development for this project.
+ Code will be tested through automated testing to detect any last bugs and
+ any defects promptly fixed.
+ The product is demonstrated to a number to gauge their responses, which
+ determines the usability of the software.
+ Code documentation is completed.
+\end_layout
+
+\begin_layout Description
+Duration: 4 weeks
+\end_layout
+
+\begin_layout Subsection
+Project Calendar
+\begin_inset LatexCommand \label{sub:Project-Calendar}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All milestones and important dates for the project are listed in Table 
+\begin_inset LatexCommand \ref{tab:Project-Calendar}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="20" columns="2">
+<features>
+<column alignment="center" valignment="middle" leftline="true" width="0">
+<column alignment="left" valignment="top" leftline="true" rightline="true" width="4in">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Date
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Milestone / Activity Description
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+6 March
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Background research started
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+13 March
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Annotated bibliography
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+20 March
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Project Plan
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+2 April
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Simple wireless testbed
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+10 April
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Progress Report draft
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+20 April
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Project Progress Report
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+28 April
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Completion of basic web interface components
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+30 April
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Starting Project Seminar preparation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+7 May
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Completion of network topology generation using new Weathermap tool; Wireless
+ mesh testbed is set up; Testing on wireless link throughput and other measureme
+nts
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+14 May
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Project Seminar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+21 May
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Completion of web interface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+28 May
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Project Review
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+4 June
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Completion of SNMP notification (traps) prototype; Experiments on automatic
+ configuration of mesh clients, multi-channel radio efficiency, and distributed
+ SNMP monitoring
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+16 July
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Implementation report; Further experiments
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+13 Auguest
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Efficiency tests on system prototype
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 September
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Completion of system prototype
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+18 September
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Thesis draft; Completion of final web interface and management framework
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 October
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Poster and Abstract; Starting testing and documentation
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+22 October
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Final thesis document
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{tab:Project-Calendar}
+
+\end_inset
+
+Project Calendar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Risk Assessment
+\end_layout
+
+\begin_layout Standard
+Possible risks to occupational health and safety are listed in Table 
+\begin_inset LatexCommand \ref{tab:Risk-Assessment}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features>
+<column alignment="center" valignment="top" leftline="true" width="0">
+<column alignment="left" valignment="top" leftline="true" rightline="true" width="3.5in">
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Assessment
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Description
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Risk
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Electromagnetic emissions from 802.11 wireless routers
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Evaluation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+The wireless routers transmit electromagnetic signals at the 2.4Ghz spectrum
+ and may interference to other consumer devices operating on the same wireless
+ spectrum.
+ They are certified to comply with the FCC rules and do not cause harmful
+ interference.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Exposure
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Medium
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Consequence
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Minor
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Risk Category
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Low
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row topline="true" bottomline="true">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Recommendation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+All wireless routers will be placed at least 1 meters away from people when
+ setting up the testbed, and switched off when not in use.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Caption
+\begin_inset LatexCommand \label{tab:Risk-Assessment}
+
+\end_inset
+
+Risk Assessment
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\newpage
+
+\begin_inset LatexCommand \bibtex[bibtotoc,ieeetr]{Thesis}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
