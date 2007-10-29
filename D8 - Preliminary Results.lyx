@@ -1,0 +1,224 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme pslatex
+\graphics default
+\paperfontsize 11
+\spacing single
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Description
+Name: Zhe Wei Chong
+\end_layout
+
+\begin_layout Description
+Student\InsetSpace \space{}
+Number: 40899013
+\end_layout
+
+\begin_layout Description
+Supervisor: Marius Portmann
+\end_layout
+
+\begin_layout Description
+Project\InsetSpace \space{}
+Title: Analyzing and Extending a Wireless Mesh Network Monitoring
+ System
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Project Status
+\end_layout
+
+\begin_layout Standard
+Most of the progress in the project so far has been directed towards completing
+ the backend and a simple web interface for the wireless mesh network monitoring
+ and visualization system.
+ The system is used for collecting monitoring data from the mesh, aggregating
+ these measurements into meaningful graphs, and presenting them coherently.
+ At the moment, software development for the project is carried out on an
+ infrastructure mode wireless network consisting of 3 
+\emph on
+OpenWRT
+\emph default
+-based wireless routers, but is expected to migrate to a fully set\SpecialChar \-
+up wireless
+ mesh testbed soon.
+\end_layout
+
+\begin_layout Standard
+A prototype of the monitoring system backend has been created for gathering
+ network statistics from the wireless routers.
+ This is done by a 3 step process: 
+\emph on
+SNMP
+\emph default
+ agents executing in each router are first polled for a set of data from
+ the 
+\emph on
+SNMP MIB
+\emph default
+ hierarchy.
+ The MIB sub\SpecialChar \-
+tree is then parsed sequentially to locate the object identifiers
+ used for looking up basic network statistics, such as download speed and
+ upload speed.
+ Finally, by polling each agent every few seconds, up-to-date measurements
+ are retrieved, and then directed into an 
+\emph on
+RRDtool
+\emph default
+ database to be visualized as colored network traffic graphs.
+ A second script is used to determine 
+\emph on
+AODV
+\emph default
+ routes set up between mesh nodes, which are visualize into a network topology
+ diagram using 
+\emph on
+Weathermap
+\emph default
+.
+ Both of these diagrams are generated as PNG (
+\begin_inset Quotes els
+\end_inset
+
+
+\emph on
+Portable Network Graphics
+\emph default
+
+\begin_inset Quotes ers
+\end_inset
+
+) image files.
+\end_layout
+
+\begin_layout Standard
+Currently, work is in progress for converting the monitoring backend from
+ using centralized polling to the information 
+\begin_inset Quotes eld
+\end_inset
+
+pushing
+\begin_inset Quotes erd
+\end_inset
+
+ approach.
+ The AODV daemon program in each mesh node will be responsible for maintaining
+ a list of routing table entries to neighboring nodes and wireless statistics
+ information, stored on the OpenWRT 
+\emph on
+/proc
+\emph default
+ file system.
+ These data is formatted in table form inside a plain-text file, and will
+ be read and parsed by a second user-space level daemon program.
+ The daemon program must recognize any updates made to the text file, and
+ send out 
+\emph on
+SNMP INFORM
+\emph default
+ messages containing the data to one designated manager on the mesh network.
+ Notice that by reversing the flow of SNMP messages and sending only where
+ necessary or when changes are detected this should reduce the overall bandwidth
+ usage of the management framework.
+ Tests are to be carried out as soon as the transition completes to measure
+ the impact of management traffic on the mesh itself.
+\end_layout
+
+\begin_layout Standard
+An alternative Weathermap backend, called 
+\emph on
+PHP-Weathermap
+\emph default
+, is also being evaluated for replacing the current network topology diagram
+ generation method.
+ PHP-Weathermap is more capable of creating flexible diagrams, and is also
+ found to be more suitable for drawing multiple link connections between
+ individual nodes on a network, necessary for illustrating connections between
+ NICTA
+\begin_inset Quotes ers
+\end_inset
+
+s multi\SpecialChar \-
+radio mesh routers.
+\end_layout
+
+\begin_layout Standard
+A simple web interface for the visualization system has also been developed
+ for displaying the wireless mesh statistics graphs.
+ This is developed as a static HTML page with asynchronous Javascript.
+ Changes to the graphs are immediately shown on the web interface by constantly
+ reloading the PNG image sources using Javascript.
+\end_layout
+
+\begin_layout Paragraph
+(490 words)
+\end_layout
+
+\begin_layout Section*
+Software Tools
+\end_layout
+
+\begin_layout Itemize
+Version control
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+All source code for the mesh monitoring software is managed using the Bazaar
+ version control system.
+ Source code changes are committed regularly into Bazaar and synchronized
+ periodically to an online Subversion code repository when a feature set
+ is completed.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Backup
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Daily automatic backups are scheduled to copy directories containing the
+ source code and project documents into a separate hard disk partition as
+ compressed archives.
+ These archives are also manually copied into a separate external hard disk
+ periodically.
+\end_layout
+
+\end_deeper
+\begin_layout Paragraph
+A copy of this submission was emailed to my supervisor on 08/05/2007 at
+ 1pm.
+\end_layout
+
+\end_body
+\end_document

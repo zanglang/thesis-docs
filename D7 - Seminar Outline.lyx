@@ -1,0 +1,179 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme pslatex
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Description
+Name: Zhe Wei Chong
+\end_layout
+
+\begin_layout Description
+Student\InsetSpace \space{}
+Number: 40899013
+\end_layout
+
+\begin_layout Description
+Supervisor: Marius Portmann
+\end_layout
+
+\begin_layout Description
+Project\InsetSpace \space{}
+Title: Analyzing and Extending a Wireless Mesh Network Monitoring
+ System
+\end_layout
+
+\begin_layout Description
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Seminar\InsetSpace \space{}
+Title:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Monitoring and Visualizing Wireless Mesh Networks
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Seminar\InsetSpace \space{}
+Date:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Wednesday, 16th May (Unconfirmed)
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Total\InsetSpace \space{}
+Length: 15 minutes
+\end_layout
+
+\begin_layout Itemize
+Presentation length: approximately 12 minutes
+\end_layout
+
+\begin_layout Itemize
+Time for questions: 3 minutes
+\end_layout
+
+\begin_layout Description
+Number\InsetSpace \space{}
+of\InsetSpace \space{}
+Slides: 18 slides
+\end_layout
+
+\begin_layout Itemize
+3 outline slides
+\end_layout
+
+\begin_layout Itemize
+5 graphical slides (Diagrams and screencasts)
+\end_layout
+
+\begin_layout Itemize
+10 content slides
+\end_layout
+
+\begin_layout Description
+Take\InsetSpace \space{}
+Home\InsetSpace \space{}
+Message:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Wireless mesh networking has a good potential of replacing traditional communica
+tion technologies in the near future.
+ However, there is a research gap for monitoring and visualizing wireless
+ mesh networks.
+ An effective solution for addressing this gap can greatly improve our ability
+ to troubleshoot the mesh network and speed up development.
+\end_layout
+
+\begin_layout Paragraph
+(50 words)
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Questions\InsetSpace \space{}
+to\InsetSpace \space{}
+ask:
+\end_layout
+
+\begin_layout Enumerate
+What software did you use for developing the system? (Note: Including wireless
+ mesh, monitoring system, visualization and web interface)
+\end_layout
+
+\begin_layout Enumerate
+How well do wireless mesh networks perform? Wouldn't it be inefficient if
+ you have heavy traffic flowing through multiple hops just to be reach its
+ destination?
+\end_layout
+
+\begin_layout Enumerate
+There has been several papers on management frameworks for mobile ad\SpecialChar \-
+hoc
+ networks before (Note: For example ANMP, Guerrilla, DAMON).
+ Why do you intend to repeat these studies?
+\end_layout
+
+\begin_layout Enumerate
+You've mentioned the use of multi\SpecialChar \-
+radio multi\SpecialChar \-
+channel wireless mesh networks.
+ How does that work, and how is it related to your project?
+\end_layout
+
+\begin_layout Enumerate
+Your monitoring system relies on the knowledge that the monitored nodes
+ are static and known beforehand.
+ For a wireless mesh network isn't this unrealistic?
+\end_layout
+
+\begin_layout Paragraph
+A copy of this submission was emailed to my supervisor on 01/05/2007 at
+ 1pm.
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,275 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme pslatex
+\graphics default
+\paperfontsize 11
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Description
+Name: Zhe Wei Chong
+\end_layout
+
+\begin_layout Description
+Student\InsetSpace \space{}
+Number: 40899013
+\end_layout
+
+\begin_layout Description
+Supervisor: Marius Portmann
+\end_layout
+
+\begin_layout Description
+Project\InsetSpace \space{}
+Title: Analyzing and Extending a Wireless Mesh Network Monitoring
+ System
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Research Methodology
+\end_layout
+
+\begin_layout Standard
+The main methodology for investigating wireless mesh network management
+ for this project is constant experimentation to model a live mesh network
+ while supported by an agile software development approach, and observation
+ of results.
+\end_layout
+
+\begin_layout Standard
+A small testbed is used to model a real world wireless mesh network with
+ an arbitrary number of 802.11 wireless clients.
+ This model will be used to study the optimal design of an SNMP-based wireless
+ mesh monitoring framework, and the efficiency of the AODV\SpecialChar \-
+MR routing protocol
+ on multi\SpecialChar \-
+radio meshes.
+\end_layout
+
+\begin_layout Standard
+Two approaches have been identified for implementing the wireless monitoring
+ framework using SNMP: gathering all statistics by having a designated manager
+ poll each node, or let all nodes periodically send status notifications
+ to the manager.
+ Currently, a prototype of the wireless mesh monitoring module using the
+ former polling approach has been implemented, but modifications will be
+ made to delegate some of the message gathering to using SNMP notifications
+ to improve the system's scalability.
+\end_layout
+
+\begin_layout Standard
+Research on muti\SpecialChar \-
+radio wireless mesh networks is relatively scarce.
+ The wireless mesh monitoring system will allow close examination of the
+ performance of AODV-MR, an extension to the AODV routing protocol to support
+ multi\SpecialChar \-
+radio multi\SpecialChar \-
+interface wireless mesh networks 
+\begin_inset LatexCommand \cite{1164791}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Software engineering for this project will carried out using an agile methodolog
+y loosely based on the Dynamic Systems Development Method (DSDM).
+ Like DSDM, the project is decomposed into a set of smaller parts.
+ Each of these parts represent goals or research aims that should be achieved
+ in the project, for example implementing a simple monitoring module for
+ wireless mesh networks, or a web interface framework for mesh visualization.
+ Development will be iterative and incremental, as software specifications
+ is constantly revised when the focus of research shifts to different topics
+ or angles.
+ And more importantly, the project is largely driven by user input in the
+ requirements definition and decision making process.
+ I will be constantly communicating with my supervisor and assimilating
+ his input into the project to develop new research ideas.
+\end_layout
+
+\begin_layout Paragraph
+(325 words)
+\end_layout
+
+\begin_layout Subsection*
+Collecting Results
+\end_layout
+
+\begin_layout Standard
+The validation of the wireless mesh monitoring system will be based on the
+ quantitative measure of the efficiency of such a framework.
+ These metrics will be gathered using a number of methods from a live testbed,
+ in which several implementation parameters will be changed to detect their
+ effects on the overall status of the wireless mesh management framework.
+\end_layout
+
+\begin_layout Standard
+Quantitative measurements may be collected using network monitoring software,
+ for example Wireshark, RRDtool and Kismet.
+ To do so, a machine is configured to actively listen to wireless transmissions
+ (
+\begin_inset Quotes els
+\end_inset
+
+promiscuous mode
+\begin_inset Quotes ers
+\end_inset
+
+) and planted into the wireless mesh network.
+ During the experiments, useful information such as wireless signal statistics,
+ routing table dumps, AODV status dumps, traffic flow through multi\SpecialChar \-
+radio
+ interfaces, packets transmitted, bandwidth throughput and so on will be
+ measured and recorded.
+ Depending on the collection method, network information and routing tables
+ can be retrieved either from SNMP modules, or read from the /proc virtual
+ file system, or simply using readily available tools for Linux.
+ Custom data, such as information related to the AODV routing protocol however,
+ may have to be retrieved by kernel drivers or specifically written scripts.
+\end_layout
+
+\begin_layout Standard
+During the experiments, parameters such as additional network traffic to
+ be injected into the mesh and SNMP poll period may be adjusted to observe
+ changes in the framework.
+ Traffic injection can be done by generating a constant stream of network
+ traffic from one end of the mesh to the other, which can be accomplished
+ by third party software, or simply by initiating a data transfer.
+\end_layout
+
+\begin_layout Standard
+It is expected that on a fairly large wireless mesh network, a polling period
+ that is too short may cause the generated management traffic to saturate
+ the mesh.
+ By monitoring successful delivery rates for packets on the mesh while the
+ parameters are being changed, it should be possible to deduce a threshold
+ for the management traffic, which may possibly be used by the monitoring
+ system to intelligently adjust its data gathering process.
+\end_layout
+
+\begin_layout Standard
+Currently the wireless mesh testbed is based on conventional AODV.
+ This model will be used as a comparison baseline with AODV\SpecialChar \-
+MR, which should
+ report an increase in routing efficiency.
+ The monitoring methods is exactly the same as single radio meshes, but
+ the monitoring system will have to be configured to retrieve statistics
+ for the additional radio interfaces.
+\end_layout
+
+\begin_layout Paragraph
+(377 words)
+\end_layout
+
+\begin_layout Subsection*
+Analysis and Evaluation Techniques
+\end_layout
+
+\begin_layout Standard
+The impact of a management framework on the wireless mesh network itself
+ is not widely covered in literature.
+ Qiu et al.\InsetSpace \space{}
+
+\begin_inset LatexCommand \cite{Qiu2003}
+
+\end_inset
+
+ reports that data collection overhead is relatively low and will not significan
+tly affect application traffic on the mesh.
+ However, their experiments were carried out on a simulated model, and the
+ scale of the test is relatively small with only up to 50 nodes.
+ On the other hand, Henderson and Kotz 
+\begin_inset LatexCommand \cite{Henderson2006}
+
+\end_inset
+
+ observes that an interval of below 5 minutes would have already saturated
+ a wired LAN.
+ Others vary greatly in implementation and size.
+\end_layout
+
+\begin_layout Standard
+To deduce the optimal load of management traffic on the wireless mesh network,
+ the traffic analyses will be compared against parameters for the mesh monitorin
+g system.
+ For example, it should be possible to observe the deterioration of packet
+ transmission rates over SNMP polling period given a fixed number of nodes
+ and constant traffic flow.
+ On the other hand, the SNMP polling model will be used a comparison baseline
+ against an optimized implementation later on that will employ SNMP notification
+s for some messages.
+ By only periodically sending status updates to the central manager if changes
+ occur at the managed devices, we will have slightly reduced the traffic
+ flow directly between them, thus reducing the management framework overhead.
+\end_layout
+
+\begin_layout Standard
+Packet traces from actively monitoring the wireless mesh network can also
+ be aggregated into their respective packet types and analyzed for better
+ understanding.
+ Similar to the SNMP polling period, we can expect that the percentage of
+ management traffic to grow proportionally to the number of monitored nodes
+ on the mesh network.
+ It is also known that stream-based internet protocols (e.g.\InsetSpace \space{}
+TCP) tend to perform
+ badly on wireless adhoc networks due to latency caused by the routing protocols.
+ On the other hand, experiments on AODV\SpecialChar \-
+MR reports improved packet delivery
+ rates and average latency, so it should be possible to reproduce the experiment
+ using multiple TCP streams on the wireless mesh and observe if additional
+ messaging overhead on the mesh may negate the improvements of multi\SpecialChar \-
+radio
+ wireless meshes.
+\end_layout
+
+\begin_layout Paragraph
+(337 words)
+\end_layout
+
+\begin_layout Paragraph
+A copy of this submission was emailed to my supervisor on 24/05/2007 at
+ 1pm.
+\end_layout
+
+\begin_layout Standard
+\begin_inset LatexCommand \bibtex[ieeetr]{/home/zanglang/Thesis}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

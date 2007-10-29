@@ -1,0 +1,137 @@
+#LyX 1.4.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme pslatex
+\graphics default
+\paperfontsize 10
+\spacing single
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\end_header
+
+\begin_body
+
+\begin_layout Description
+Name: Zhe Wei Chong
+\end_layout
+
+\begin_layout Description
+Student\InsetSpace \space{}
+Number: 40899013
+\end_layout
+
+\begin_layout Description
+Supervisor: Marius Portmann
+\end_layout
+
+\begin_layout Description
+Project\InsetSpace \space{}
+Title: Analyzing and Extending a Wireless Mesh Network Monitoring
+ System
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+Project\InsetSpace \space{}
+Review:
+\end_layout
+
+\begin_layout Standard
+On overall, the project has been progressing well.
+ The project's main aims and motivations were identified early in the semester,
+ all major deliverables thus far were completed on-time, and a working prototype
+ of the wireless mesh networks has been developed.
+ While the prototype is still lacking in features compared to what has been
+ planned in the project plan, it will be used as a framework for future
+ development to build upon, as well as a baseline for comparison to determine
+ the efficiency worth of an improved monitoring system.
+\end_layout
+
+\begin_layout Standard
+In terms of items learned over the semester, mastering the use of new tools
+ for producing and managing research proves to be greatly beneficial.
+ IDEs (Integrated Development Environment) helped ease the process of learning
+ the Python language for developing the prototype, and software such as
+ LaTeX and BibTex were very useful for creating and managing documents and
+ research references.
+ Practising strict academic writing and referencing styles was challenging
+ initially, and took some time to get used to.
+\end_layout
+
+\begin_layout Standard
+Over the semester, the main research theme of the project has shifted as
+ project requirements become more clearly defined.
+ During the initial literature review, the selected project topic was fairly
+ straightforward: it was apparent that most researchers have been attempting
+ to tackle the problem of bandwidth efficiency for monitoring wireless networks
+ using a distributed, peer-to-peer like architecture, thus testing that
+ approach was selected as the primary approach for this project.
+ However, this was found to be overly complex for the scope of an honours
+ project, and the project was encouraged to focus more on solving current
+ research problems required to build the wireless mesh monitoring system.
+ At the same time several more research ideas were proposed, including testing
+ the efficiency of multi-radio wireless mesh networks, and quantifying methods
+ for querying wireless measurements from the mesh.
+ Furthermore, considering that multi-radio wireless mesh networks is still
+ a fairly new research topic with not many substantial results being documented,
+ this presents an interesting research gap that can be used as a goal for
+ the project.
+ Thus, the research plan has been recently adjusted to reflect this decision.
+\end_layout
+
+\begin_layout Standard
+However, research has been admittedly slow, especially for milestones that
+ were planned to be completed by the end of the semester.
+ While this was expected because I have opted to do 5 courses this semester,
+ the workload required to be dedicated for research have been severely underesti
+mated.
+ Fortunately, all of the project deliverables are completed with little
+ problems, with decent results.
+ Note has been taken to review the project timeline more thoroughly to take
+ into consideration more real-world factors however, for example assignments
+ and holidays, which will likely demand attention away from research for
+ periods of time.
+ Because the workload for the next semester will be considerably lighter,
+ hopefully this will no longer be an issue.
+ I think, like most of my peers it is agreed unanimously that the importance
+ of time management is one lesson that each of us "re-learn" every time,
+ but never able to perfect.
+ It is definitely an area that needs improving on as we continue to learn.
+\end_layout
+
+\begin_layout Paragraph
+(519 words)
+\end_layout
+
+\begin_layout Paragraph
+A copy of this submission was emailed to my supervisor on 04/06/2007 at
+ 1pm.
+\end_layout
+
+\end_body
+\end_document
